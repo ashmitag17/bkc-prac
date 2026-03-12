@@ -1,0 +1,56 @@
+Attendance 
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+contract Attendance {
+
+mapping(uint256 => bool) public isPresent;
+
+constructor(uint256[] memory rollno) {
+
+for(uint i=0;i<rollno.length;i++) {
+
+isPresent[rollno[i]] = true;
+
+}
+
+}
+
+function attend(uint256 roll) public view returns(bool){
+
+return isPresent[roll];
+
+}
+
+}
+
+
+Donation
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+contract Donation {
+
+address public owner;
+
+mapping(address => uint) public balances;
+
+constructor() {
+
+owner = msg.sender;
+
+}
+
+function donate() public payable {
+
+balances[msg.sender] += msg.value;
+
+}
+
+function getDonationBalance() public view returns(uint){
+
+return address(this).balance;
+
+}
+
+}
